@@ -34,11 +34,8 @@ const SLIDES: Slide[] = [
     alt: 'Plongeur en suspension dans un cenote turquoise, Mexique',
   },
   {
-    image: '/photos/statue-asie.jpg',
-    alt: 'Statue dorée monumentale et escaliers colorés, Batu Caves, Malaisie',
-    // La statue (et donc la tête) sont dans le tiers supérieur du cadre
-    // portrait — on remonte le crop pour ne pas couper la tête en object-cover.
-    objectPosition: '50% 25%',
+    image: '/photos/seychelles.jpg',
+    alt: 'Plage aux Seychelles vue du ciel, eaux turquoise et végétation luxuriante',
   },
   {
     image: '/photos/auroresboreales.jpg',
