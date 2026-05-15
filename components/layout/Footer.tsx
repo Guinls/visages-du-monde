@@ -42,7 +42,7 @@ export function Footer() {
       {/* ─── Zone 1 ────────────────────────────────────────────── */}
       <Container className="grid grid-cols-2 gap-12 py-16 lg:grid-cols-4">
         <div className="col-span-2 lg:col-span-1">
-          <Logo variant="dark" height={48} />
+          <Logo height={48} />
           <p className="mt-6 max-w-[280px] text-[14px] leading-relaxed">
             Agence de voyages, Brest. Membre du réseau Visages du Monde, depuis 1952.
           </p>

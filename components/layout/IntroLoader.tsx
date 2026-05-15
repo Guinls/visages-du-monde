@@ -258,7 +258,7 @@ function LogoReveal() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.6, duration: 0.4, ease: 'easeOut' }}
     >
-      <Logo variant="light" height={64} alt="Visages du Monde" />
+      <Logo height={64} alt="Visages du Monde" />
     </motion.div>
   );
 }

@@ -51,24 +51,14 @@ export function Nav() {
         )}
       >
         <Container className="flex h-[72px] items-center justify-between">
-          {/* Logo gauche — switche light/dark selon le scroll */}
+          {/* Logo gauche — PNG officiel, identique sur hero et fond cream */}
           <a
             href="#top"
             aria-label="Visages du Monde Brest — retour en haut"
             className="inline-flex shrink-0 items-center"
           >
-            <Logo
-              variant={scrolled ? 'light' : 'dark'}
-              height={36}
-              className="hidden md:block"
-              priority
-            />
-            <Logo
-              variant={scrolled ? 'light' : 'dark'}
-              height={28}
-              className="md:hidden"
-              priority
-            />
+            <Logo height={36} className="hidden md:block" priority />
+            <Logo height={28} className="md:hidden" priority />
           </a>
 
           {/* Liens centre — desktop */}
@@ -130,7 +120,7 @@ export function Nav() {
           aria-label="Menu principal"
         >
           <Container className="flex h-[72px] items-center justify-between">
-            <Logo variant="light" height={32} />
+            <Logo height={32} />
             <button
               type="button"
               onClick={() => setOpen(false)}

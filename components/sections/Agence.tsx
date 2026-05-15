@@ -164,7 +164,7 @@ function InfoCard({ className = '' }: { className?: string }) {
     <article
       className={`rounded-2xl bg-cream p-6 text-charcoal shadow-[0_12px_40px_-12px_rgba(0,0,0,0.4)] ${className}`}
     >
-      <Logo variant="light" height={24} />
+      <Logo height={24} />
       <h3 className="mt-4 font-display text-[22px] uppercase leading-tight">
         Visages du Monde Brest
       </h3>

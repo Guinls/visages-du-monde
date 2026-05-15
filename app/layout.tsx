@@ -84,6 +84,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // Next.js auto-découvre /app/icon.png et /app/apple-icon.png et émet
+  // les <link rel="icon"> appropriés. On les explicite ici pour la
+  // lisibilité (le bloc metadata reste la source de vérité).
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+  },
 };
 
 export const viewport: Viewport = {
