@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder typographique — à remplacer par le SVG officiel fourni par le réseau VDM. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" role="img" aria-label="Visages du Monde">
+  <text
+    x="100"
+    y="22"
+    text-anchor="middle"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="14"
+    font-weight="600"
+    letter-spacing="0"
+    fill="currentColor"
+  >Visages du Monde</text>
+  <text
+    x="100"
+    y="38"
+    text-anchor="middle"
+    font-family="JetBrains Mono, monospace"
+    font-size="8"
+    letter-spacing="2"
+    fill="currentColor"
+    opacity="0.6"
+  >AGENCE DE VOYAGES</text>
+</svg>

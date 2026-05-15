@@ -1,7 +1,8 @@
-import { ArrowRight, Calendar, MapPin } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
+import { Logo } from '@/components/ui/Logo';
 import { SectionReveal } from '@/components/ui/SectionReveal';
 import { HORAIRES } from '@/data/horaires';
 import {
@@ -11,14 +12,27 @@ import {
   CLICRDV_URL,
 } from '@/lib/utils';
 
-/** Coordonnées de l'agence pour l'embed Google Maps et les directions. */
-const { lat, lng } = AGENCE_ADDRESS;
-
-// URL d'embed Maps "sans clé" — l'iframe par URL ne requiert pas de clé.
-// Le bbox est centré sur l'agence avec un padding raisonnable.
-const MAPS_EMBED = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - 0.005}%2C${lat - 0.003}%2C${lng + 0.005}%2C${lat + 0.003}&layer=mapnik&marker=${lat}%2C${lng}`;
-
-const DIRECTIONS_URL = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+/**
+ * Carte intégrée — iframe Google Maps "search embed", sans clé API.
+ *
+ * URL utilisée :
+ *   https://maps.google.com/maps?q={address}&t=&z=15&ie=UTF8&iwloc=&output=embed
+ *
+ * Pourquoi pas la Maps Embed API officielle ?
+ *   → elle exige une clé API (et donc une facturation potentielle, une fuite
+ *     possible en clair côté client). On reste sur le "search embed" historique
+ *     tant qu'il est servi par Google.
+ *
+ * NOTE FUTURE — remplacer cette iframe par un composant Mapbox GL JS custom
+ * (style sépia/navy, marker SVG reprenant la "lune" du logo VDM) dès que le
+ * compte Mapbox CRUX STUDIO sera configuré. Le swap se fait UNIQUEMENT dans
+ * ce fichier, aucun impact ailleurs.
+ */
+const MAPS_QUERY = encodeURIComponent(
+  `${AGENCE_ADDRESS.street}, ${AGENCE_ADDRESS.postalCode} ${AGENCE_ADDRESS.city}`,
+);
+const MAPS_EMBED_URL = `https://maps.google.com/maps?q=${MAPS_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+const DIRECTIONS_URL = `https://www.google.com/maps/dir//${MAPS_QUERY}`;
 
 export function Agence() {
   return (
@@ -28,29 +42,14 @@ export function Agence() {
       aria-label="Venir nous voir"
     >
       <Container>
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Carte */}
-          <SectionReveal className="order-2 lg:order-1">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-charcoal/40 lg:aspect-auto lg:h-full lg:min-h-[460px]">
-              <iframe
-                title={`Plan de l’agence — ${AGENCE_ADDRESS.street}, ${AGENCE_ADDRESS.city}`}
-                src={MAPS_EMBED}
-                className="absolute inset-0 h-full w-full grayscale-[0.3]"
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-              />
-              {/* Marqueur custom en overlay au centre */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full text-petrol"
-              >
-                <MapPin size={32} fill="currentColor" strokeWidth={1} />
-              </div>
-            </div>
+        <div className="grid gap-10 lg:grid-cols-5 lg:gap-16">
+          {/* ─── Carte (60% desktop) ─────────────────────────── */}
+          <SectionReveal className="order-2 lg:order-1 lg:col-span-3">
+            <MapWithOverlay />
           </SectionReveal>
 
-          {/* Infos */}
-          <SectionReveal className="order-1 lg:order-2" delay={0.1}>
+          {/* ─── Infos (40% desktop) ─────────────────────────── */}
+          <SectionReveal className="order-1 lg:order-2 lg:col-span-2" delay={0.1}>
             <Eyebrow className="text-cream/70">L’agence</Eyebrow>
             <h2 className="mt-4 font-display text-display-1 uppercase">
               {AGENCE_ADDRESS.street},
@@ -121,5 +120,70 @@ export function Agence() {
         </div>
       </Container>
     </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   <MapWithOverlay /> — iframe + carte info en surimpression
+   ───────────────────────────────────────────────────────────────── */
+
+function MapWithOverlay() {
+  return (
+    <div className="relative">
+      {/* Conteneur de la map */}
+      <div className="relative h-[320px] w-full overflow-hidden rounded-2xl bg-charcoal/40 md:h-[480px]">
+        <iframe
+          title="Carte de localisation de Visages du Monde Brest"
+          src={MAPS_EMBED_URL}
+          className="absolute inset-0 h-full w-full"
+          width="100%"
+          height="100%"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          // L'iframe Google Maps n'expose pas d'API ; l'attribut allow vide
+          // évite d'autoriser des permissions par défaut.
+          allow=""
+        />
+
+        {/* Overlay info-card — desktop UNIQUEMENT (position absolute) */}
+        <div className="pointer-events-none absolute inset-0 hidden md:block">
+          <InfoCard className="pointer-events-auto absolute bottom-6 left-6 max-w-[320px]" />
+        </div>
+      </div>
+
+      {/* Overlay info-card — mobile (sous la carte, en remontée légère) */}
+      <div className="md:hidden">
+        <InfoCard className="relative z-10 -mt-4 mx-4" />
+      </div>
+    </div>
+  );
+}
+
+function InfoCard({ className = '' }: { className?: string }) {
+  return (
+    <article
+      className={`rounded-2xl bg-cream p-6 text-charcoal shadow-[0_12px_40px_-12px_rgba(0,0,0,0.4)] ${className}`}
+    >
+      <Logo variant="light" height={24} />
+      <h3 className="mt-4 font-display text-[22px] uppercase leading-tight">
+        Visages du Monde Brest
+      </h3>
+      <p className="mt-2 text-[14px] leading-relaxed text-slate">
+        {AGENCE_ADDRESS.street}
+        <br />
+        {AGENCE_ADDRESS.postalCode} {AGENCE_ADDRESS.city}
+      </p>
+      <p className="mt-1 text-[12px] text-slate/80">Tram Siam</p>
+
+      <a
+        href={DIRECTIONS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-petrol px-5 py-3 text-[14px] font-medium text-cream transition-all duration-200 hover:bg-petrol-dark hover:scale-[1.02] hover:shadow-[0_8px_24px_-12px_rgba(20,153,199,0.6)]"
+      >
+        Itinéraire
+        <ArrowRight size={16} aria-hidden="true" />
+      </a>
+    </article>
   );
 }

@@ -13,7 +13,10 @@ const config: Config = {
           DEFAULT: '#1499C7',
           dark: '#0F7CA3',
         },
-        navy: '#0A3B5C',
+        navy: {
+          DEFAULT: '#0A3B5C',
+          dark: '#082E47',
+        },
         cream: '#FAF7F2',
         bone: '#F0EBE0',
         charcoal: '#1A1A1A',

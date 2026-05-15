@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder typographique — à remplacer par le SVG officiel AXA (autorisation requise). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" role="img" aria-label="AXA — Assurance RCP">
+  <text
+    x="100"
+    y="22"
+    text-anchor="middle"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="20"
+    font-weight="700"
+    letter-spacing="3"
+    fill="currentColor"
+  >AXA</text>
+  <text
+    x="100"
+    y="38"
+    text-anchor="middle"
+    font-family="JetBrains Mono, monospace"
+    font-size="8"
+    letter-spacing="1.5"
+    fill="currentColor"
+    opacity="0.6"
+  >ASSURANCE RCP</text>
+</svg>

@@ -1,6 +1,7 @@
 import { Facebook, Instagram } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Logo } from '@/components/ui/Logo';
+import { PartnerLabels } from '@/components/ui/PartnerLabels';
 import { HORAIRES } from '@/data/horaires';
 import {
   AGENCE_ADDRESS,
@@ -27,13 +28,19 @@ const LEGAL_ENTITY = {
   immatriculation: 'IM031100005',
 };
 
+/**
+ * Footer en 3 zones distinctes :
+ *  1. Identité / sitemap / contact / réseaux (grille 4 cols)
+ *  2. Garanties & certifications (bande PartnerLabels)
+ *  3. Mentions légales (2 lignes copyright/légal)
+ */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-charcoal text-cream/70">
+      {/* ─── Zone 1 ────────────────────────────────────────────── */}
       <Container className="grid grid-cols-2 gap-12 py-16 lg:grid-cols-4">
-        {/* Col 1 — identité */}
         <div className="col-span-2 lg:col-span-1">
           <Logo variant="dark" height={48} />
           <p className="mt-6 max-w-[280px] text-[14px] leading-relaxed">
@@ -41,7 +48,6 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Col 2 — sitemap */}
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream">
             Plan du site
@@ -60,7 +66,6 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Col 3 — contact */}
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream">
             Contact
@@ -97,7 +102,6 @@ export function Footer() {
           </ul>
         </div>
 
-        {/* Col 4 — réseaux */}
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream">
             Suivez-nous
@@ -125,23 +129,35 @@ export function Footer() {
         </div>
       </Container>
 
-      {/* Sous-ligne légale (obligations Atout France) */}
+      {/* ─── Zone 2 — Garanties & certifications ─────────────────── */}
+      <div className="border-t border-cream/10 py-8">
+        <Container>
+          <p className="text-center font-mono text-[11px] uppercase tracking-[0.25em] text-cream/50">
+            Garanties &amp; certifications
+          </p>
+          <div className="mt-6">
+            <PartnerLabels height={36} tone="cream" />
+          </div>
+        </Container>
+      </div>
+
+      {/* ─── Zone 3 — Mentions légales ──────────────────────────── */}
       <div className="border-t border-cream/10">
-        <Container className="py-6 text-[12px] leading-relaxed text-cream/50">
+        <Container className="py-4 text-[12px] leading-relaxed text-cream/50">
           <p>
             {LEGAL_ENTITY.name} · {LEGAL_ENTITY.address} · Immatriculation Atout France{' '}
             {LEGAL_ENTITY.immatriculation} · Garantie financière APST · Assurance RCP AXA
+            Assurances
           </p>
         </Container>
       </div>
 
-      {/* Mention copyright + crédit studio */}
       <div className="border-t border-cream/10">
-        <Container className="flex flex-col gap-3 py-5 text-[12px] text-cream/40 md:flex-row md:items-center md:justify-between">
+        <Container className="flex flex-col gap-3 py-4 text-[12px] text-cream/40 md:flex-row md:items-center md:justify-between">
           <p>
-            © {year} Visages du Monde Brest · Mentions légales · Politique de confidentialité
+            © {year} Visages du Monde Brest · Mentions légales · Politique de
+            confidentialité · Cookies · Site conçu par CRUX STUDIO
           </p>
-          <p>Site conçu par CRUX STUDIO</p>
         </Container>
       </div>
     </footer>

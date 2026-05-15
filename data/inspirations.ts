@@ -48,7 +48,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: 'Au fil du Rhin',
     description:
       'Strasbourg, Heidelberg, Cologne, Amsterdam. 8 jours au fil de l’eau, pension complète à bord, escales guidées.',
-    image: '/photos/maisons-europe-du-nord.png',
-    alt: 'Maisons à pignons typiques d’une ville du nord de l’Europe',
+    image: '/photos/moulin.png',
+    alt: 'Moulin à vent au cœur d’un paysage rural néerlandais',
   },
 ];

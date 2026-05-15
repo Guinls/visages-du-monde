@@ -9,10 +9,10 @@ import {
 } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
+import { PartnerLabels } from '@/components/ui/PartnerLabels';
 import { SectionReveal } from '@/components/ui/SectionReveal';
 import { GARANTIES, type Garantie } from '@/data/garanties';
 
-/** Map nom d'icône (data) → composant lucide. */
 const ICON_MAP: Record<Garantie['icon'], LucideIcon> = {
   network: Network,
   badgeCheck: BadgeCheck,
@@ -24,17 +24,23 @@ const ICON_MAP: Record<Garantie['icon'], LucideIcon> = {
 
 /**
  * Section "Pourquoi nous faire confiance" — fond navy.
- * Présente les garanties officielles (Atout France, APST, RCP AXA, Selectour…)
- * via icônes minimalistes. Pas de logos officiels (RGPD / droits d'image).
+ *
+ * Composée en deux parties :
+ *  A) Grille 3×2 des engagements avec icônes minimalistes (pas de logos
+ *     officiels — droits d'image).
+ *  B) Bande horizontale "Partenaires & certifications" (fond navy-dark
+ *     plus profond) avec les 5 labels placeholders typographiques.
+ *     Voir [components/ui/PartnerLabels.tsx] pour les détails.
  */
 export function Confiance() {
   return (
     <section
       id="confiance"
-      className="bg-navy py-24 text-cream"
+      className="bg-navy text-cream"
       aria-label="Garanties et engagements"
     >
-      <Container>
+      {/* ─── PARTIE A — Grille d'engagements ───────────────────── */}
+      <Container className="py-24">
         <SectionReveal className="max-w-3xl">
           <Eyebrow className="text-cream/70">Garanties &amp; engagements</Eyebrow>
           <h2 className="mt-4 font-display text-display-1 uppercase">
@@ -69,6 +75,20 @@ export function Confiance() {
           })}
         </ul>
       </Container>
+
+      {/* ─── PARTIE B — Bande logos partenaires (navy-dark) ─────── */}
+      <div className="border-t border-cream/10 bg-navy-dark py-12">
+        <Container>
+          <SectionReveal>
+            <p className="text-center font-mono text-[11px] uppercase tracking-[0.25em] text-cream/50">
+              Partenaires &amp; certifications
+            </p>
+            <div className="mt-8">
+              <PartnerLabels height={48} tone="cream" />
+            </div>
+          </SectionReveal>
+        </Container>
+      </div>
     </section>
   );
 }

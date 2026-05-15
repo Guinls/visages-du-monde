@@ -11,7 +11,7 @@ import { Methode } from '@/components/sections/Methode';
 import { Pitch } from '@/components/sections/Pitch';
 import { Reseau } from '@/components/sections/Reseau';
 import { Univers } from '@/components/sections/Univers';
-import { GOOGLE_RATING, GOOGLE_REVIEWS_COUNT } from '@/data/avis';
+import { AVIS, GOOGLE_RATING, GOOGLE_REVIEWS_COUNT } from '@/data/avis';
 import { HORAIRES } from '@/data/horaires';
 import { VDM_NATIONAL_URL, VDM_NETWORK } from '@/data/reseau';
 import {
@@ -64,6 +64,18 @@ function buildJsonLd() {
       bestRating: 5,
       worstRating: 1,
     },
+    review: AVIS.map((a) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: a.author },
+      datePublished: a.date,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: a.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: a.quote,
+    })),
     sameAs: [INSTAGRAM_URL, FACEBOOK_URL],
     parentOrganization: {
       '@type': 'Organization',
