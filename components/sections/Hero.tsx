@@ -11,6 +11,9 @@ import { AGENCE_PHONE, AGENCE_PHONE_TEL, CLICRDV_URL } from '@/lib/utils';
 type Slide = {
   image: string;
   alt: string;
+  /** Override CSS `object-position` (utile pour les photos portrait où le sujet
+   *  principal n'est pas centré verticalement). Défaut : "50% 50%". */
+  objectPosition?: string;
 };
 
 /**
@@ -33,6 +36,9 @@ const SLIDES: Slide[] = [
   {
     image: '/photos/statue-asie.jpg',
     alt: 'Statue dorée monumentale et escaliers colorés, Batu Caves, Malaisie',
+    // La statue (et donc la tête) sont dans le tiers supérieur du cadre
+    // portrait — on remonte le crop pour ne pas couper la tête en object-cover.
+    objectPosition: '50% 25%',
   },
   {
     image: '/photos/auroresboreales.jpg',
@@ -79,6 +85,7 @@ export function Hero() {
             quality={85}
             sizes="100vw"
             className="object-cover"
+            style={{ objectPosition: SLIDES[index].objectPosition ?? '50% 50%' }}
           />
         </motion.div>
       </AnimatePresence>
