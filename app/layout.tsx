@@ -1,0 +1,117 @@
+import type { Metadata, Viewport } from 'next';
+import { Anton, Inter, JetBrains_Mono } from 'next/font/google';
+import './globals.css';
+import { IntroLoader } from '@/components/layout/IntroLoader';
+import { SITE_URL } from '@/lib/utils';
+
+/* ─────────────────────────────────────────────
+   Fonts — chargées via next/font (display: swap, preload).
+   On expose chaque famille en CSS variable utilisée dans tailwind.config.
+   ───────────────────────────────────────────── */
+const displayFont = Anton({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const bodyFont = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+const monoFont = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
+/* ─────────────────────────────────────────────
+   Métadonnées globales
+   ───────────────────────────────────────────── */
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Visages du Monde Brest — Agence de voyages sur mesure',
+    template: '%s · Visages du Monde Brest',
+  },
+  description:
+    'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées, des voyages dessinés sur mesure. Prenez rendez-vous au 44 rue Emile Zola.',
+  applicationName: 'Visages du Monde Brest',
+  authors: [{ name: 'Visages du Monde Brest' }],
+  keywords: [
+    'agence de voyages Brest',
+    'voyage sur mesure',
+    'circuits',
+    'séjours',
+    'croisières',
+    'voyage de noces',
+    'safari',
+    'Finistère',
+    'Bretagne',
+  ],
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: SITE_URL,
+    siteName: 'Visages du Monde Brest',
+    title: 'Visages du Monde Brest — Agence de voyages sur mesure',
+    description:
+      'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées, des voyages dessinés sur mesure.',
+    images: [
+      {
+        url: '/photos/turquie-mongolfiere.png',
+        width: 1200,
+        height: 630,
+        alt: 'Montgolfières au lever du soleil au-dessus de la Cappadoce',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Visages du Monde Brest — Agence de voyages sur mesure',
+    description:
+      'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées.',
+    images: ['/photos/turquie-mongolfiere.png'],
+  },
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#FAF7F2',
+  colorScheme: 'light',
+  width: 'device-width',
+  initialScale: 1,
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="fr"
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
+    >
+      <body className="bg-cream font-body text-charcoal antialiased">
+        {/* Skip-link a11y — visible au focus uniquement */}
+        <a href="#main" className="skip-link">
+          Aller au contenu
+        </a>
+
+        {/* Intro animation : 2.4s, joué une seule fois par session */}
+        <IntroLoader />
+
+        {children}
+      </body>
+    </html>
+  );
+}

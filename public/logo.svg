@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 90" fill="none">
+  <!-- "visages du monde" — display font (Anton/Bebas) en lowercase tracking serré -->
+  <text
+    x="0"
+    y="56"
+    font-family="Anton, Bebas Neue, Impact, sans-serif"
+    font-size="56"
+    fill="#1499C7"
+    letter-spacing="-1"
+  >visages du monde</text>
+  <!-- Sous-titre "AGENCE DE VOYAGES" en mono tracking large -->
+  <text
+    x="2"
+    y="80"
+    font-family="JetBrains Mono, monospace"
+    font-size="11"
+    fill="#1499C7"
+    letter-spacing="3"
+  >AGENCE DE VOYAGES</text>
+</svg>
