@@ -63,7 +63,7 @@ export const metadata: Metadata = {
       'Agence de voyages à Brest, membre du réseau Visages du Monde (42 agences en France). Voyages sur mesure conçus par une équipe locale.',
     images: [
       {
-        url: '/photos/turquie-mongolfiere.png',
+        url: '/photos/turquie-mongolfiere.jpg',
         width: 1200,
         height: 630,
         alt: 'Montgolfières au lever du soleil au-dessus de la Cappadoce',
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: 'Visages du Monde Brest — Agence de voyages depuis 1952',
     description:
       'Agence de voyages à Brest, membre du réseau Visages du Monde. Voyages sur mesure.',
-    images: ['/photos/turquie-mongolfiere.png'],
+    images: ['/photos/turquie-mongolfiere.jpg'],
   },
   alternates: {
     canonical: '/',

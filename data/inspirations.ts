@@ -21,7 +21,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: 'Pouilles',
     description:
       'Talon de la botte italienne, vols directs depuis Rennes. Trulli d’Alberobello, mer turquoise, vignobles et tables paysannes.',
-    image: '/photos/sicille.png',
+    image: '/photos/sicille.jpg',
     alt: 'Côte rocheuse des Pouilles avec maisons blanches dominant la mer',
   },
   {
@@ -30,7 +30,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: 'Colonies & langues',
     description:
       'Colonies, stages sportifs et séjours linguistiques pour les 4-17 ans, encadrés et tout compris.',
-    image: '/photos/ski.png',
+    image: '/photos/ski.jpg',
     alt: 'Jeunes skieurs sur une piste enneigée au lever du soleil',
   },
   {
@@ -39,7 +39,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: 'Soleil d’été',
     description:
       'Sélection de séjours plage 7 nuits, départs de Paris et province. À découvrir avec votre conseiller.',
-    image: '/photos/tortue.png',
+    image: '/photos/tortue.jpg',
     alt: 'Tortue de mer nageant dans des eaux turquoise',
   },
   {
@@ -48,7 +48,7 @@ export const INSPIRATIONS: Inspiration[] = [
     title: 'Au fil du Rhin',
     description:
       'Strasbourg, Heidelberg, Cologne, Amsterdam. 8 jours au fil de l’eau, pension complète à bord, escales guidées.',
-    image: '/photos/moulin.png',
+    image: '/photos/moulin.jpg',
     alt: 'Moulin à vent au cœur d’un paysage rural néerlandais',
   },
 ];

@@ -42,7 +42,7 @@ function buildJsonLd() {
       'Agence de voyages à Brest, membre du réseau Visages du Monde. Voyages sur mesure conçus par une équipe locale.',
     url: SITE_URL,
     telephone: AGENCE_PHONE_TEL,
-    image: `${SITE_URL}/photos/turquie-mongolfiere.png`,
+    image: `${SITE_URL}/photos/turquie-mongolfiere.jpg`,
     priceRange: '€€',
     address: {
       '@type': 'PostalAddress',
@@ -89,12 +89,17 @@ function buildJsonLd() {
 
 export default function HomePage() {
   const jsonLd = buildJsonLd();
+  // Defense in depth : si une string du JSON-LD venait un jour à contenir
+  // "</script>", JSON.stringify ne l'échappe pas (elle casserait la balise
+  // et permettrait une XSS). On échappe tous les "<" en < — JSON-LD
+  // reste valide et les parseurs Google le lisent normalement.
+  const jsonLdSafe = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdSafe }}
       />
 
       <Nav />

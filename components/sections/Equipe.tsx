@@ -26,7 +26,7 @@ export function Equipe() {
           <SectionReveal className="lg:col-span-2">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-charcoal/5">
               <Image
-                src="/photos/visages.png"
+                src="/photos/visages.jpg"
                 alt="Atmosphère de l’agence Visages du Monde à Brest"
                 fill
                 quality={85}

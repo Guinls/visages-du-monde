@@ -1,4 +1,5 @@
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Calendar } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
@@ -13,26 +14,24 @@ import {
 } from '@/lib/utils';
 
 /**
- * Carte intégrée — iframe Google Maps "search embed", sans clé API.
+ * Section "Venir nous voir".
  *
- * URL utilisée :
- *   https://maps.google.com/maps?q={address}&t=&z=15&ie=UTF8&iwloc=&output=embed
+ * ⚠️ Plus d'iframe Google Maps depuis la V2 du patch (RGPD).
  *
- * Pourquoi pas la Maps Embed API officielle ?
- *   → elle exige une clé API (et donc une facturation potentielle, une fuite
- *     possible en clair côté client). On reste sur le "search embed" historique
- *     tant qu'il est servi par Google.
+ * À la place, une image statique cliquable (`/photos/map-brest.jpg`) :
+ * - Aucun cookie tiers tant que l'utilisateur ne clique pas
+ * - Clic → ouvre Google Maps en nouvel onglet (itinéraire)
+ * - Conforme RGPD sans bannière de consentement
  *
- * NOTE FUTURE — remplacer cette iframe par un composant Mapbox GL JS custom
- * (style sépia/navy, marker SVG reprenant la "lune" du logo VDM) dès que le
- * compte Mapbox CRUX STUDIO sera configuré. Le swap se fait UNIQUEMENT dans
- * ce fichier, aucun impact ailleurs.
+ * NOTE — La carte actuelle est un PLACEHOLDER généré par
+ *   scripts/generate-map-placeholder.mjs (cream + marker pétrole stylisé).
+ * À remplacer par une capture réelle de Google Maps centrée sur l'agence
+ * (1200×800, marker dessiné). Même chemin/nom de fichier — un simple
+ * écrasement suffit, aucun code à toucher.
  */
-const MAPS_QUERY = encodeURIComponent(
+const DIRECTIONS_URL = `https://www.google.com/maps/dir//${encodeURIComponent(
   `${AGENCE_ADDRESS.street}, ${AGENCE_ADDRESS.postalCode} ${AGENCE_ADDRESS.city}`,
-);
-const MAPS_EMBED_URL = `https://maps.google.com/maps?q=${MAPS_QUERY}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-const DIRECTIONS_URL = `https://www.google.com/maps/dir//${MAPS_QUERY}`;
+)}`;
 
 export function Agence() {
   return (
@@ -43,12 +42,12 @@ export function Agence() {
     >
       <Container>
         <div className="grid gap-10 lg:grid-cols-5 lg:gap-16">
-          {/* ─── Carte (60% desktop) ─────────────────────────── */}
+          {/* ─── Carte cliquable (60% desktop) ─────────────────── */}
           <SectionReveal className="order-2 lg:order-1 lg:col-span-3">
-            <MapWithOverlay />
+            <ClickableMap />
           </SectionReveal>
 
-          {/* ─── Infos (40% desktop) ─────────────────────────── */}
+          {/* ─── Infos canoniques (40% desktop) ─────────────────── */}
           <SectionReveal className="order-1 lg:order-2 lg:col-span-2" delay={0.1}>
             <Eyebrow className="text-cream/70">L’agence</Eyebrow>
             <h2 className="mt-4 font-display text-display-1 uppercase">
@@ -124,66 +123,57 @@ export function Agence() {
 }
 
 /* ─────────────────────────────────────────────────────────────────
-   <MapWithOverlay /> — iframe + carte info en surimpression
+   <ClickableMap /> — image statique cliquable + overlay info-card
    ───────────────────────────────────────────────────────────────── */
 
-function MapWithOverlay() {
+function ClickableMap() {
   return (
-    <div className="relative">
-      {/* Conteneur de la map */}
-      <div className="relative h-[320px] w-full overflow-hidden rounded-2xl bg-charcoal/40 md:h-[480px]">
-        <iframe
-          title="Carte de localisation de Visages du Monde Brest"
-          src={MAPS_EMBED_URL}
-          className="absolute inset-0 h-full w-full"
-          width="100%"
-          height="100%"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          // L'iframe Google Maps n'expose pas d'API ; l'attribut allow vide
-          // évite d'autoriser des permissions par défaut.
-          allow=""
-        />
+    <a
+      href={DIRECTIONS_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Voir l’agence sur Google Maps (nouvel onglet)"
+      className="group relative block h-[320px] w-full overflow-hidden rounded-2xl bg-charcoal/40 md:h-[480px]"
+    >
+      <Image
+        src="/photos/map-brest.jpg"
+        alt="Carte de localisation de l’agence Visages du Monde Brest"
+        fill
+        sizes="(max-width: 1024px) 100vw, 60vw"
+        quality={85}
+        className="object-cover"
+      />
+      {/* Voile navy qui s'intensifie au hover — souligne la zone interactive */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 bg-navy/15 transition-colors duration-300 group-hover:bg-navy/30"
+      />
 
-        {/* Overlay info-card — desktop UNIQUEMENT (position absolute) */}
-        <div className="pointer-events-none absolute inset-0 hidden md:block">
-          <InfoCard className="pointer-events-auto absolute bottom-6 left-6 max-w-[320px]" />
+      {/* Overlay info-card — bottom-left desktop, plein-bas mobile.
+          Volontairement SANS H2 d'adresse (le H2 canonique vit dans
+          le panneau infos à droite, pas de doublon).
+       */}
+      <div className="absolute inset-x-4 bottom-4 max-w-[320px] md:bottom-6 md:left-6 md:right-auto">
+        <div className="rounded-2xl bg-cream p-5 text-charcoal shadow-[0_12px_40px_-12px_rgba(0,0,0,0.4)] md:p-6">
+          <Logo height={24} />
+          <p className="mt-4 text-[15px] font-semibold text-charcoal">
+            Visages du Monde Brest
+          </p>
+          <p className="mt-1 text-[13px] leading-relaxed text-slate">
+            {AGENCE_ADDRESS.street}
+            <br />
+            {AGENCE_ADDRESS.postalCode} {AGENCE_ADDRESS.city} · Tram Siam
+          </p>
+          <span className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-petrol transition-colors group-hover:text-petrol-dark">
+            Voir sur Google Maps
+            <ArrowUpRight
+              size={14}
+              aria-hidden="true"
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </span>
         </div>
       </div>
-
-      {/* Overlay info-card — mobile (sous la carte, en remontée légère) */}
-      <div className="md:hidden">
-        <InfoCard className="relative z-10 -mt-4 mx-4" />
-      </div>
-    </div>
-  );
-}
-
-function InfoCard({ className = '' }: { className?: string }) {
-  return (
-    <article
-      className={`rounded-2xl bg-cream p-6 text-charcoal shadow-[0_12px_40px_-12px_rgba(0,0,0,0.4)] ${className}`}
-    >
-      <Logo height={24} />
-      <h3 className="mt-4 font-display text-[22px] uppercase leading-tight">
-        Visages du Monde Brest
-      </h3>
-      <p className="mt-2 text-[14px] leading-relaxed text-slate">
-        {AGENCE_ADDRESS.street}
-        <br />
-        {AGENCE_ADDRESS.postalCode} {AGENCE_ADDRESS.city}
-      </p>
-      <p className="mt-1 text-[12px] text-slate/80">Tram Siam</p>
-
-      <a
-        href={DIRECTIONS_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-petrol px-5 py-3 text-[14px] font-medium text-cream transition-all duration-200 hover:bg-petrol-dark hover:scale-[1.02] hover:shadow-[0_8px_24px_-12px_rgba(20,153,199,0.6)]"
-      >
-        Itinéraire
-        <ArrowRight size={16} aria-hidden="true" />
-      </a>
-    </article>
+    </a>
   );
 }

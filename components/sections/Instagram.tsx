@@ -7,18 +7,18 @@ import { INSTAGRAM_URL } from '@/lib/utils';
 
 // 12 vignettes — sélection éditoriale parmi les 36 photos
 const GRID: Array<{ src: string; alt: string }> = [
-  { src: '/photos/lynx.png', alt: 'Lynx dans la neige, regard intense' },
-  { src: '/photos/koala.png', alt: 'Koala accroché à une branche d’eucalyptus' },
-  { src: '/photos/temple.png', alt: 'Temple bouddhiste asiatique au crépuscule' },
-  { src: '/photos/japon.png', alt: 'Temple japonais sous les cerisiers en fleurs' },
-  { src: '/photos/maroc.png', alt: 'Ruelle d’une médina marocaine baignée de couleurs' },
-  { src: '/photos/egypte.png', alt: 'Site archéologique égyptien dans le désert' },
-  { src: '/photos/statue-asie.png', alt: 'Statue ancienne en pierre, Asie' },
-  { src: '/photos/corcovado.png', alt: 'Christ Rédempteur du Corcovado à Rio de Janeiro' },
-  { src: '/photos/thailande.png', alt: 'Plage de Thaïlande aux eaux turquoise' },
-  { src: '/photos/loutres-de-mer.png', alt: 'Loutres de mer flottant sur le dos' },
-  { src: '/photos/chiens-de-traineaux.png', alt: 'Attelage de chiens de traîneau sur la banquise' },
-  { src: '/photos/tortue.png', alt: 'Tortue de mer dans des eaux turquoise' },
+  { src: '/photos/lynx.jpg', alt: 'Lynx dans la neige, regard intense' },
+  { src: '/photos/koala.jpg', alt: 'Koala accroché à une branche d’eucalyptus' },
+  { src: '/photos/temple.jpg', alt: 'Temple bouddhiste asiatique au crépuscule' },
+  { src: '/photos/japon.jpg', alt: 'Temple japonais sous les cerisiers en fleurs' },
+  { src: '/photos/maroc.jpg', alt: 'Ruelle d’une médina marocaine baignée de couleurs' },
+  { src: '/photos/egypte.jpg', alt: 'Site archéologique égyptien dans le désert' },
+  { src: '/photos/statue-asie.jpg', alt: 'Statue ancienne en pierre, Asie' },
+  { src: '/photos/corcovado.jpg', alt: 'Christ Rédempteur du Corcovado à Rio de Janeiro' },
+  { src: '/photos/thailande.jpg', alt: 'Plage de Thaïlande aux eaux turquoise' },
+  { src: '/photos/loutres-de-mer.jpg', alt: 'Loutres de mer flottant sur le dos' },
+  { src: '/photos/chiens-de-traineaux.jpg', alt: 'Attelage de chiens de traîneau sur la banquise' },
+  { src: '/photos/tortue.jpg', alt: 'Tortue de mer dans des eaux turquoise' },
 ];
 
 export function Instagram() {

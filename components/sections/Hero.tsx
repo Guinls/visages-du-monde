@@ -19,23 +19,23 @@ type Slide = {
  */
 const SLIDES: Slide[] = [
   {
-    image: '/photos/turquie-mongolfiere.png',
+    image: '/photos/turquie-mongolfiere.jpg',
     alt: 'Montgolfières au lever du soleil, Cappadoce, Turquie',
   },
   {
-    image: '/photos/norvege.png',
+    image: '/photos/norvege.jpg',
     alt: 'Fjords enneigés au crépuscule, Norvège',
   },
   {
-    image: '/photos/plongeon-cenote.png',
+    image: '/photos/plongeon-cenote.jpg',
     alt: 'Plongeur en suspension dans un cenote turquoise, Mexique',
   },
   {
-    image: '/photos/statue-asie.png',
+    image: '/photos/statue-asie.jpg',
     alt: 'Statue dorée monumentale et escaliers colorés, Batu Caves, Malaisie',
   },
   {
-    image: '/photos/aurores-boreales.png',
+    image: '/photos/aurores-boreales.jpg',
     alt: 'Aurore boréale au-dessus d’un paysage glacé',
   },
 ];
