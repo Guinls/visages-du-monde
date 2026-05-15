@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { Logo } from '@/components/ui/Logo';
 
 const STORAGE_KEY = 'vdm-intro-seen';
 const TOTAL_DURATION_MS = 2400;
@@ -245,7 +246,9 @@ function PlaneIcon() {
 }
 
 /* ─────────────────────────────────────────────
-   Logo "visages du monde" — apparaît à t=1.6s
+   Logo officiel "visages du monde" — apparaît à t=1.6s.
+   On utilise le composant <Logo /> (asset PNG/SVG fourni),
+   pas une recréation typographique en CSS.
    ───────────────────────────────────────────── */
 function LogoReveal() {
   return (
@@ -255,12 +258,7 @@ function LogoReveal() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.6, duration: 0.4, ease: 'easeOut' }}
     >
-      <p className="font-display text-[28px] lowercase leading-none tracking-tight text-petrol">
-        visages du monde
-      </p>
-      <p className="mt-1 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-petrol/80">
-        Agence de voyages
-      </p>
+      <Logo variant="light" height={64} alt="Visages du Monde" />
     </motion.div>
   );
 }

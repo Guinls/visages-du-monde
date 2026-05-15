@@ -3,29 +3,33 @@ import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { SectionReveal } from '@/components/ui/SectionReveal';
+import { CLICRDV_URL } from '@/lib/utils';
 
 const BULLETS = [
-  '15 ans d’expérience cumulée',
+  'Spécialistes sur-mesure, circuits, séjours, croisières',
   'Réseau de partenaires éprouvés sur les 5 continents',
-  'Assistance avant, pendant et après le voyage',
+  'Assistance avant, pendant et après votre voyage',
 ];
 
-export function CecileEtMarie() {
+/**
+ * Section "L'agence" — anonymisée par choix éditorial.
+ * On ne nomme pas les conseillères : on parle de "l'équipe", "nos conseillères".
+ * Une carte d'équipe (photo + prénom + spécialité) pourra être ajoutée plus tard
+ * en bas de section quand le shooting sera réalisé.
+ */
+export function Equipe() {
   return (
-    <section
-      id="agence"
-      className="bg-bone py-24 md:py-32"
-      aria-label="L'agence — Cécile et Marie"
-    >
+    <section id="agence" className="bg-bone py-24 md:py-32" aria-label="L'agence">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-5 lg:gap-16">
-          {/* Photo — col gauche (≈40%) */}
+          {/* Photo atmosphérique — col gauche (≈40%) */}
           <SectionReveal className="lg:col-span-2">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-charcoal/5">
               <Image
                 src="/photos/visages.png"
-                alt="Cécile et Marie, conseillères voyages chez Visages du Monde Brest"
+                alt="Atmosphère de l’agence Visages du Monde à Brest"
                 fill
+                quality={85}
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
               />
@@ -36,14 +40,12 @@ export function CecileEtMarie() {
           <SectionReveal className="lg:col-span-3 lg:pl-8" delay={0.1}>
             <Eyebrow>L’agence</Eyebrow>
             <h2 className="mt-4 font-display text-display-1 uppercase text-charcoal">
-              Cécile &amp; Marie,
-              <br />
-              conseillères voyages.
+              Une équipe à votre écoute, à Brest.
             </h2>
             <p className="mt-6 max-w-[560px] text-body-lg text-slate">
-              Passionnées par leur métier, elles dessinent depuis Brest des voyages
-              qui vous ressemblent. Une rencontre, une écoute, une réponse sur mesure —
-              quelle que soit votre envie d’ailleurs.
+              Depuis notre agence de la rue Emile Zola, nos conseillères passionnées
+              dessinent des voyages qui vous ressemblent. Une rencontre, une écoute,
+              une réponse sur mesure — quelle que soit votre envie d’ailleurs.
             </p>
 
             <ul className="mt-8 space-y-3 text-[16px] text-charcoal">
@@ -58,10 +60,12 @@ export function CecileEtMarie() {
             </ul>
 
             <a
-              href="#contact"
+              href={CLICRDV_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-10 inline-flex items-center gap-2 text-[14px] font-medium text-petrol underline decoration-petrol/40 underline-offset-[6px] transition-colors hover:text-petrol-dark hover:decoration-petrol"
             >
-              Rencontrer l’équipe
+              Prendre rendez-vous avec un conseiller
               <ArrowRight size={16} aria-hidden="true" />
             </a>
           </SectionReveal>

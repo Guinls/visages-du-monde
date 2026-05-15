@@ -9,8 +9,8 @@ type Stat = {
 
 const STATS: Stat[] = [
   { value: '85', label: 'destinations dans le monde' },
+  { value: '1952', label: 'année de fondation du réseau' },
   { value: `${GOOGLE_RATING}/5`, label: `sur Google · ${GOOGLE_REVIEWS_COUNT} avis` },
-  { value: '2', label: 'conseillères, à votre écoute' },
 ];
 
 export function Pitch() {

@@ -51,6 +51,7 @@ export function Instagram() {
                   src={img.src}
                   alt={img.alt}
                   fill
+                  quality={80}
                   sizes="(max-width: 768px) 33vw, 16vw"
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transform-none"
                 />

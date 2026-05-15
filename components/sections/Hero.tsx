@@ -76,6 +76,7 @@ export function Hero() {
             alt={SLIDES[index].alt}
             fill
             priority={index === 0}
+            quality={85}
             sizes="100vw"
             className="object-cover"
           />
@@ -101,13 +102,14 @@ export function Hero() {
           className="max-w-[1100px]"
         >
           <p className="font-mono text-[12px] uppercase tracking-[0.3em] text-cream/80">
-            Agence de voyages à Brest
+            Agence de voyages à Brest — depuis 1952
           </p>
           <h1 className="mt-4 font-display text-hero uppercase text-cream">
             Chaque voyage commence ici.
           </h1>
-          <p className="mt-6 max-w-[560px] text-body-lg text-cream/90">
-            85 destinations, conçues sur mesure par Cécile &amp; Marie, depuis Brest.
+          <p className="mt-6 max-w-[600px] text-body-lg text-cream/90">
+            Une équipe locale, un réseau national de 42 agences, des voyages dessinés
+            sur mesure.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">

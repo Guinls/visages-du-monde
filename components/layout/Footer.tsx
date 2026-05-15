@@ -1,5 +1,6 @@
 import { Facebook, Instagram } from 'lucide-react';
 import { Container } from '@/components/ui/Container';
+import { Logo } from '@/components/ui/Logo';
 import { HORAIRES } from '@/data/horaires';
 import {
   AGENCE_ADDRESS,
@@ -11,12 +12,20 @@ import {
 
 const SECTIONS = [
   { label: 'Nos univers', href: '#univers' },
-  { label: 'Destinations', href: '#destinations' },
+  { label: 'Inspirations', href: '#inspirations' },
+  { label: 'Le réseau', href: '#reseau' },
   { label: 'L’agence', href: '#agence' },
   { label: 'Avis', href: '#avis' },
   { label: 'Instagram', href: '#instagram' },
   { label: 'Contact', href: '#contact' },
 ];
+
+/** Entité juridique exploitante de l'agence. */
+const LEGAL_ENTITY = {
+  name: 'Coach And Travel Investment',
+  address: '196 Rue Ampère, Parc Activité La Tourelle, 22400 Lamballe',
+  immatriculation: 'IM031100005',
+};
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -26,14 +35,9 @@ export function Footer() {
       <Container className="grid grid-cols-2 gap-12 py-16 lg:grid-cols-4">
         {/* Col 1 — identité */}
         <div className="col-span-2 lg:col-span-1">
-          <p className="font-display text-[32px] lowercase leading-none tracking-tight text-cream">
-            visages du monde
-          </p>
-          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em] text-cream/70">
-            Agence de voyages
-          </p>
+          <Logo variant="dark" height={48} />
           <p className="mt-6 max-w-[280px] text-[14px] leading-relaxed">
-            Agence de voyages indépendante. Brest, à deux pas du tram Siam.
+            Agence de voyages, Brest. Membre du réseau Visages du Monde, depuis 1952.
           </p>
         </div>
 
@@ -121,8 +125,19 @@ export function Footer() {
         </div>
       </Container>
 
+      {/* Sous-ligne légale (obligations Atout France) */}
       <div className="border-t border-cream/10">
-        <Container className="flex flex-col gap-3 py-6 text-[12px] text-cream/50 md:flex-row md:items-center md:justify-between">
+        <Container className="py-6 text-[12px] leading-relaxed text-cream/50">
+          <p>
+            {LEGAL_ENTITY.name} · {LEGAL_ENTITY.address} · Immatriculation Atout France{' '}
+            {LEGAL_ENTITY.immatriculation} · Garantie financière APST · Assurance RCP AXA
+          </p>
+        </Container>
+      </div>
+
+      {/* Mention copyright + crédit studio */}
+      <div className="border-t border-cream/10">
+        <Container className="flex flex-col gap-3 py-5 text-[12px] text-cream/40 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} Visages du Monde Brest · Mentions légales · Politique de confidentialité
           </p>

@@ -2,15 +2,18 @@ import { Footer } from '@/components/layout/Footer';
 import { Nav } from '@/components/layout/Nav';
 import { Agence } from '@/components/sections/Agence';
 import { Avis } from '@/components/sections/Avis';
-import { CecileEtMarie } from '@/components/sections/CecileEtMarie';
-import { Destinations } from '@/components/sections/Destinations';
+import { Confiance } from '@/components/sections/Confiance';
+import { Equipe } from '@/components/sections/Equipe';
 import { Hero } from '@/components/sections/Hero';
+import { Inspirations } from '@/components/sections/Inspirations';
 import { Instagram } from '@/components/sections/Instagram';
 import { Methode } from '@/components/sections/Methode';
 import { Pitch } from '@/components/sections/Pitch';
+import { Reseau } from '@/components/sections/Reseau';
 import { Univers } from '@/components/sections/Univers';
 import { GOOGLE_RATING, GOOGLE_REVIEWS_COUNT } from '@/data/avis';
 import { HORAIRES } from '@/data/horaires';
+import { VDM_NATIONAL_URL, VDM_NETWORK } from '@/data/reseau';
 import {
   AGENCE_ADDRESS,
   AGENCE_PHONE_TEL,
@@ -21,11 +24,12 @@ import {
 
 /**
  * JSON-LD `TravelAgency` — données structurées pour le SEO local.
- * Documenté ici : https://schema.org/TravelAgency
+ * https://schema.org/TravelAgency
  *
- * Aucune donnée user-input : tout est dur (constantes + data files).
- * Pas d'échappement nécessaire mais on encode quand même via JSON.stringify
- * pour éviter tout caractère problématique injecté plus tard.
+ * - Aucune donnée user-input : tout est dur (constantes + data files).
+ * - `parentOrganization` rattache l'agence brestoise au réseau national.
+ * - `foundingDate` à 1952 = date de fondation du réseau VDM.
+ * - `openingHours` filtré des entrées "closed" (Schema.org liste les jours ouverts).
  */
 function buildJsonLd() {
   return {
@@ -33,9 +37,9 @@ function buildJsonLd() {
     '@type': 'TravelAgency',
     '@id': `${SITE_URL}/#agence`,
     name: 'Visages du Monde Brest',
-    alternateName: 'Visages du Monde',
+    alternateName: 'VDM Brest',
     description:
-      'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées, des voyages dessinés sur mesure.',
+      'Agence de voyages à Brest, membre du réseau Visages du Monde. Voyages sur mesure conçus par une équipe locale.',
     url: SITE_URL,
     telephone: AGENCE_PHONE_TEL,
     image: `${SITE_URL}/photos/turquie-mongolfiere.png`,
@@ -61,6 +65,13 @@ function buildJsonLd() {
       worstRating: 1,
     },
     sameAs: [INSTAGRAM_URL, FACEBOOK_URL],
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'Visages du Monde',
+      url: VDM_NATIONAL_URL,
+      foundingDate: String(VDM_NETWORK.anneeFondation),
+      description: `Réseau national de ${VDM_NETWORK.agencesFrance} agences de voyages indépendantes en France.`,
+    },
   };
 }
 
@@ -69,7 +80,6 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Données structurées (SEO local) — injectées en JSON safe */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -80,10 +90,12 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <Pitch />
-        <CecileEtMarie />
+        <Equipe />
         <Univers />
-        <Destinations />
+        <Inspirations />
         <Methode />
+        <Confiance />
+        <Reseau />
         <Avis />
         <Instagram />
         <Agence />

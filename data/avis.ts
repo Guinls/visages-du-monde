@@ -21,7 +21,7 @@ export const AVIS: Avis[] = [
     date: 'Février 2026',
     rating: 5,
     quote:
-      'Je remercie Céline pour son professionnalisme et sa gentillesse. Elle a résolu mon problème ETA Kenya Airways malgré mon stress, encore merci !',
+      'Je remercie l’équipe pour son professionnalisme et sa gentillesse. Elle a résolu mon problème ETA Kenya Airways malgré mon stress, encore merci !',
   },
   {
     id: 'thierry',

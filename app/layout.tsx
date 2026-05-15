@@ -33,21 +33,23 @@ const monoFont = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Visages du Monde Brest — Agence de voyages sur mesure',
+    default: 'Visages du Monde Brest — Agence de voyages depuis 1952',
     template: '%s · Visages du Monde Brest',
   },
   description:
-    'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées, des voyages dessinés sur mesure. Prenez rendez-vous au 44 rue Emile Zola.',
+    'Agence de voyages à Brest, membre du réseau Visages du Monde. 85 destinations, conseillères passionnées, voyages sur mesure. RDV au 44 rue Emile Zola.',
   applicationName: 'Visages du Monde Brest',
   authors: [{ name: 'Visages du Monde Brest' }],
   keywords: [
     'agence de voyages Brest',
+    'Visages du Monde',
     'voyage sur mesure',
     'circuits',
     'séjours',
     'croisières',
     'voyage de noces',
     'safari',
+    'Selectour',
     'Finistère',
     'Bretagne',
   ],
@@ -56,9 +58,9 @@ export const metadata: Metadata = {
     locale: 'fr_FR',
     url: SITE_URL,
     siteName: 'Visages du Monde Brest',
-    title: 'Visages du Monde Brest — Agence de voyages sur mesure',
+    title: 'Visages du Monde Brest — Agence de voyages depuis 1952',
     description:
-      'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées, des voyages dessinés sur mesure.',
+      'Agence de voyages à Brest, membre du réseau Visages du Monde (42 agences en France). Voyages sur mesure conçus par une équipe locale.',
     images: [
       {
         url: '/photos/turquie-mongolfiere.png',
@@ -70,9 +72,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Visages du Monde Brest — Agence de voyages sur mesure',
+    title: 'Visages du Monde Brest — Agence de voyages depuis 1952',
     description:
-      'Agence de voyages indépendante à Brest. 85 destinations, des conseillères passionnées.',
+      'Agence de voyages à Brest, membre du réseau Visages du Monde. Voyages sur mesure.',
     images: ['/photos/turquie-mongolfiere.png'],
   },
   alternates: {

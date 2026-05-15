@@ -75,6 +75,7 @@ function UniversCardInner({ badge, title, description, image, alt }: CardProps) 
         src={image}
         alt={alt}
         fill
+        quality={85}
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover transition-transform duration-[600ms] ease-out group-hover:scale-105 motion-reduce:transform-none"
       />

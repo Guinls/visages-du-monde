@@ -4,19 +4,22 @@ import { Calendar, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { Logo } from '@/components/ui/Logo';
 import { CLICRDV_URL, cn } from '@/lib/utils';
 
 const LINKS = [
   { label: 'Nos univers', href: '#univers' },
-  { label: 'Destinations', href: '#destinations' },
+  { label: 'Inspirations', href: '#inspirations' },
+  { label: 'Le réseau', href: '#reseau' },
   { label: 'L’agence', href: '#agence' },
   { label: 'Avis', href: '#avis' },
-  { label: 'Contact', href: '#contact' },
 ];
 
 /**
  * Navigation sticky.
  * - Au-delà de 80px de scroll : fond cream/85 + backdrop-blur + bordure bas.
+ * - Logo : variante "dark" (cream sur photo) en haut de hero, "light" (petrol)
+ *   une fois scrollé sur fond cream.
  * - Mobile : burger → panneau plein écran avec mêmes liens en grand.
  */
 export function Nav() {
@@ -30,7 +33,6 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Verrouille le scroll quand le menu mobile est ouvert
   useEffect(() => {
     document.documentElement.style.overflow = open ? 'hidden' : '';
     return () => {
@@ -49,21 +51,24 @@ export function Nav() {
         )}
       >
         <Container className="flex h-[72px] items-center justify-between">
-          {/* Logo gauche */}
+          {/* Logo gauche — switche light/dark selon le scroll */}
           <a
             href="#top"
-            className={cn(
-              'group inline-flex flex-col leading-none transition-colors duration-200',
-              scrolled ? 'text-petrol' : 'text-cream',
-            )}
-            aria-label="Visages du Monde — retour en haut"
+            aria-label="Visages du Monde Brest — retour en haut"
+            className="inline-flex shrink-0 items-center"
           >
-            <span className="font-display text-[22px] lowercase tracking-tight">
-              visages du monde
-            </span>
-            <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.3em] opacity-80">
-              Agence de voyages
-            </span>
+            <Logo
+              variant={scrolled ? 'light' : 'dark'}
+              height={36}
+              className="hidden md:block"
+              priority
+            />
+            <Logo
+              variant={scrolled ? 'light' : 'dark'}
+              height={28}
+              className="md:hidden"
+              priority
+            />
           </a>
 
           {/* Liens centre — desktop */}
@@ -125,14 +130,7 @@ export function Nav() {
           aria-label="Menu principal"
         >
           <Container className="flex h-[72px] items-center justify-between">
-            <span className="flex flex-col leading-none text-petrol">
-              <span className="font-display text-[22px] lowercase tracking-tight">
-                visages du monde
-              </span>
-              <span className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.3em]">
-                Agence de voyages
-              </span>
-            </span>
+            <Logo variant="light" height={32} />
             <button
               type="button"
               onClick={() => setOpen(false)}
