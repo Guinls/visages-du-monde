@@ -42,7 +42,7 @@ function buildJsonLd() {
       'Agence de voyages à Brest, membre du réseau Visages du Monde. Voyages sur mesure conçus par une équipe locale.',
     url: SITE_URL,
     telephone: AGENCE_PHONE_TEL,
-    image: `${SITE_URL}/photos/turquie-mongolfiere.jpg`,
+    image: `${SITE_URL}/photos/turquie.jpg`,
     priceRange: '€€',
     address: {
       '@type': 'PostalAddress',

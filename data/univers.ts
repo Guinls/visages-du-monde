@@ -41,7 +41,7 @@ export const UNIVERS: Univers[] = [
     title: 'Safaris, croisières, sommets.',
     description:
       'Aurores boréales en Laponie, safari en Tanzanie, croisière sur le Rhin, trek en Patagonie : les voyages qu’on rêve une fois dans sa vie.',
-    image: '/photos/aurores-boreales.jpg',
+    image: '/photos/auroresboreales.jpg',
     alt: 'Aurores boréales vertes au-dessus d’un paysage enneigé',
   },
 ];

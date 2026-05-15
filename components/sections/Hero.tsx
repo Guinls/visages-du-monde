@@ -19,12 +19,12 @@ type Slide = {
  */
 const SLIDES: Slide[] = [
   {
-    image: '/photos/turquie-mongolfiere.jpg',
-    alt: 'Montgolfières au lever du soleil, Cappadoce, Turquie',
+    image: '/photos/turquie.jpg',
+    alt: 'Montgolfières au lever du soleil au-dessus de la Cappadoce, Turquie',
   },
   {
-    image: '/photos/norvege.jpg',
-    alt: 'Fjords enneigés au crépuscule, Norvège',
+    image: '/photos/islande.jpg',
+    alt: 'Montagne enneigée se reflétant dans un fjord, Islande',
   },
   {
     image: '/photos/plongeon-cenote.jpg',
@@ -35,8 +35,8 @@ const SLIDES: Slide[] = [
     alt: 'Statue dorée monumentale et escaliers colorés, Batu Caves, Malaisie',
   },
   {
-    image: '/photos/aurores-boreales.jpg',
-    alt: 'Aurore boréale au-dessus d’un paysage glacé',
+    image: '/photos/auroresboreales.jpg',
+    alt: 'Aurore boréale au-dessus d’un paysage côtier',
   },
 ];
 
