@@ -57,8 +57,8 @@ export function Nav() {
             aria-label="Visages du Monde Brest — retour en haut"
             className="inline-flex shrink-0 items-center"
           >
-            <Logo height={36} className="hidden md:block" priority />
-            <Logo height={28} className="md:hidden" priority />
+            <Logo height={52} className="hidden md:block" priority />
+            <Logo height={40} className="md:hidden" priority />
           </a>
 
           {/* Liens centre — desktop */}

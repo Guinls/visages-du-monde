@@ -55,7 +55,13 @@ export function PartnerLabels({
       {LABELS.map((l) => (
         <li
           key={l.id}
-          className="opacity-70 transition-opacity duration-300 hover:opacity-100"
+          // État repos : brightness(0) + invert(1) force tous les logos en
+          //   blanc cassé → visibilité homogène sur fond sombre (navy-dark
+          //   en Confiance, charcoal en Footer).
+          // Hover : on retire le filtre, les couleurs d'origine des logos
+          //   officiels apparaissent (utile quand les vrais SVG remplaceront
+          //   les placeholders typographiques).
+          className="opacity-80 brightness-0 invert transition-all duration-300 hover:opacity-100 hover:brightness-100 hover:invert-0"
         >
           <Image
             src={l.src}
